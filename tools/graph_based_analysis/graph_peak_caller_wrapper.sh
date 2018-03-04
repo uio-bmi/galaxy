@@ -1,7 +1,7 @@
 source activate py36
 which pip
 which python3.6
-/usit/abel/u1/ivargry/.conda/envs/py36/bin/pip install pyvg
+python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py
 
 exit 0
 
