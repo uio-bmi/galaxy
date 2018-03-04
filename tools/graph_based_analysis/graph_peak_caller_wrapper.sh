@@ -1,4 +1,6 @@
 source activate py36
+which pip
+which python3.6
 pip install pyvg
 exit 0
 
