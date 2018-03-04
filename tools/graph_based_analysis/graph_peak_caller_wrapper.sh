@@ -1,4 +1,6 @@
 
+source activate py36
+
 genome=$1
 sample=$2
 read_length=$3
