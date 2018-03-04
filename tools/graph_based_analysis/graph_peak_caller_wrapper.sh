@@ -1,5 +1,6 @@
-
 source activate py36
+pip install pyvg
+exit 0
 
 genome=$1
 sample=$2
