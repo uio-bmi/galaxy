@@ -1,7 +1,8 @@
 source activate py36
 which pip
 which python3.6
-pip install pyvg
+/usit/abel/u1/ivargry/.conda/envs/py36/bin/pip install pyvg
+
 exit 0
 
 genome=$1
