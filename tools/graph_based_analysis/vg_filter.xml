@@ -1,0 +1,20 @@
+<tool id="vg_filter" name="Filter mapped vg reads" version="0.1.0">
+  <description></description>
+  <command>/home/ivargry/dev/galaxy/tools/graph_based_analysis/vg filter -q $q -r $r -s 2.0 $reads > $output</command>
+  <inputs>
+    <param format="gam" name="reads" type="data" label="Reads to filter" argument="This should be a GAM file returned by vg map."/>
+
+    <param name="q" size="4" type="integer" value="60" label="Minimum PHRED mapping quality required to keep a read" />
+    <param name="r" size="4" type="float" value="0.95" label="Minimum identity required to keep a read (approx equal to proportion of matches to read length)" />
+
+  </inputs>
+  <outputs>
+    <data format="gam" name="output" />
+  </outputs>
+
+
+  <help>
+        This tool runs <i>vg map</i>.
+  </help>
+
+</tool>

@@ -1,0 +1,21 @@
+<tool id="vg_map" name="Map reads to graph" version="0.1.0">
+  <description></description>
+  <command>/home/ivargry/dev/galaxy/tools/graph_based_analysis/vg map -f $reads -x /home/ivargry/dev/galaxy/static/$genome/wg.xg -g /home/ivargry/dev/galaxy/static/$genome/wg.gcsa > $output</command>
+  <inputs>
+    <param format="fq,fastq,fastq.gz,fq.gz" name="reads" type="data" label="Reads to map" argument="This is the fastq reads that you want to map."/>
+
+    <param name="genome" type="select" label="Genome" argument="Select genome you want to map these reads to">
+        <option value="arabidopsis_thaliana">Arabidopsis Thaliana SNP and indel graph</option>
+        <option value="drosophila_melanogaster">Drosophila Melanogaster SNP and indel graph</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data format="gam" name="output" />
+  </outputs>
+
+
+  <help>
+        This tool runs <i>vg map</i>.
+  </help>
+
+</tool>

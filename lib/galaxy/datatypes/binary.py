@@ -89,6 +89,10 @@ class Binary(data.Data):
         return open(dataset.file_name)
 
 
+class Gam(Binary):
+    file_ext = "gam"
+
+
 class Ab1(Binary):
     """Class describing an ab1 binary sequence file"""
     file_ext = "ab1"

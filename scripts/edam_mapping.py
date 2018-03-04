@@ -27,7 +27,7 @@ import galaxy.datatypes.registry
 
 SCRIPTS_DIR = os.path.dirname(__file__)
 PROJECT_DIR = os.path.abspath(os.path.join(SCRIPTS_DIR, os.pardir))
-CONFIG_FILE = os.path.join(PROJECT_DIR, "config", "datatypes_conf.xml.sample")
+CONFIG_FILE = os.path.join(PROJECT_DIR, "config", "datatypes_conf.xml")
 
 datatypes_registry = galaxy.datatypes.registry.Registry()
 datatypes_registry.load_datatypes(root_dir=PROJECT_DIR, config=CONFIG_FILE)
