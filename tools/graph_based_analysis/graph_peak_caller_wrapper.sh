@@ -115,4 +115,4 @@ else
         cat ${chromosome}_diffexpr.fasta >> $out_differentially_expressed
     done
 
-done
+fi
