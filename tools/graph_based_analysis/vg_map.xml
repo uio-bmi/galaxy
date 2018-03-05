@@ -10,13 +10,13 @@
     </param>
   </inputs>
   <outputs>
-    <data format="gam" name="output" />
+    <data format="gam" name="output" label="aligments.gam"/>
   </outputs>
 
 
 
   <help>
-        This tool runs <i>vg map</i>.
+        This tool is a basic wrapper around <i>vg map</i> for single-end reads. The tool runs the command <i>vg map -f reads.fq -g index.gcsa -x index.xg</i> without tweaking any other parameters of <i>vg map</i>.
   </help>
 
 </tool>

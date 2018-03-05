@@ -104,14 +104,14 @@ else
     for chromosome in $(echo $chromosomes | tr "," "\n")
     do
         echo "----- Running fimo separately for chr $chromosome --- "
-        /data/galaxy/galaxy-graph-peak-caller/static/graph_peak_caller_data/fimo -oc fimo_$chromosome $motif ${chromosome}_sequences.fasta
+        /data/galaxy/galaxy-graph-peak-caller/static/graph_peak_caller_data/fimo -oc fimo_$chromosome $motif ${chromosome}_sequences.fasta > fimo_log.txt 2>&1
     done
 
     # Collection differentially expressed data
     for chromosome in $(echo $chromosomes | tr "," "\n")
     do
         /usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py diffexpr \
-            $chromosome $graph_dir/$chromosome.nobg fimo_$chromosome/fimo.txt $graph_dir/$chromosome.json
+            $chromosome $graph_dir/$chromosome.nobg fimo_$chromosome/fimo.txt $graph_dir/$chromosome.json > diffexpr_log.txt 2>&1
 
         cat ${chromosome}_diffexpr.fasta >> $out_differentially_expressed
     done

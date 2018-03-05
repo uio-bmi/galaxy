@@ -6,11 +6,12 @@
 
   </inputs>
   <outputs>
-    <data format="json" name="output" file="converted.json"/>
+    <data format="json" name="output" label="converted_alignments.json" />
   </outputs>
 
 
   <help>
+    This tool runs <i>vg view -aj input.gam > output.json</i>, converting GAM to JSON.
   </help>
 
 </tool>

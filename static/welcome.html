@@ -18,22 +18,22 @@
         <div class="container">
 
             <h1>Overview</h1>
-            <p>This Galaxy server contains 4 tools making it possible to run a simple graph-based ChIP-seq pipeline, going from raw ChIP-seq reads to peaks:</p>
+            <p>This Galaxy server contains 4 tools that togheter make it possible to run a simple graph-based ChIP-seq pipeline, going from raw ChIP-seq reads to peaks:</p>
             <ul>
-                <li><a href="https://hyperbrowser.uio.no/graph-peak-caller?tool_id=vg_map&version=0.1.0&__identifer=tjlqvp2c7">Map reads to graph</a>: A simple wrapper around vg, making it possible to map reads to one of our pre-compiled graphs</li>
-                <li><a href="https://hyperbrowser.uio.no/graph-peak-caller?tool_id=vg_filter&version=0.1.0&__identifer=ywiokm6bv8a">Filter mapped vg reads</a>: Filtering reads mapped with vg map</li>
-                <li><a href="https://hyperbrowser.uio.no/graph-peak-caller?tool_id=vg_view&version=0.1.0&__identifer=ft4pmh6hmk">Convert GAM to JSON</a>: A simple wrapper around the <i>vg view</i> command, converting the output from vg map to a format accepted by Graph Peak Caller</li>
-                <li><a href="https://hyperbrowser.uio.no/graph-peak-caller?tool_id=graph_peak_caller&version=0.1.0&__identifer=gnt9r7kfuut">Graph Peak Caller</a>: Takes vg JSON alignments as input and calls peaks on one of our pre-compiled graph-based reference genomes.</li>
+                <li><a target="_top" href="https://hyperbrowser.uio.no/graph-peak-caller?tool_id=vg_map&version=0.1.0&__identifer=tjlqvp2c7">Map reads to graph</a>: A simple wrapper around vg, making it possible to map reads to one of our pre-compiled graphs</li>
+                <li><a target="_top" href="https://hyperbrowser.uio.no/graph-peak-caller?tool_id=vg_filter&version=0.1.0&__identifer=ywiokm6bv8a">Filter mapped vg alignments</a>: Filtering mapped aligments produced by the <i>Map reads to graph</i> tool.</li>
+                <li><a target="_top" href="https://hyperbrowser.uio.no/graph-peak-caller?tool_id=vg_view&version=0.1.0&__identifer=ft4pmh6hmk">Convert GAM to JSON</a>: A simple wrapper around the <i>vg view</i> command. Converts the output from vg map to a format accepted by Graph Peak Caller</li>
+                <li><a target="_top" href="https://hyperbrowser.uio.no/graph-peak-caller?tool_id=graph_peak_caller&version=0.1.0&__identifer=gnt9r7kfuut">Graph Peak Caller</a>: Takes vg JSON alignments as input and calls peaks on one of our pre-compiled graph-based reference genomes.</li>
             </ul>
             <p>This server currently has pre-compiled graph-based reference genomes for <i>Arabidopsis Thaliana</i> and <i>Drosophila Melanogaster</i>. Feel free to contact us if you have suggestions for other genomes we should support.
                 Also, note that if you have your own graph-based reference genome, or special needs not supported by this server, you can use <a href="https://github.com/uio-bmi/graph_peak_caller/wiki/Graph-based-ChIP-seq-tutorial" target="_blank">Graph Peak Caller and vg from the command line</a>.</p>
-            <p>All credits for <i>vg</i> goes to the developers of <i>vg</i>. This Galaxy server only implements a simple wrapper around vg.</p>
+            <p>All credits for <i><a href="https://github.com/vgteam/vg" target="_blank">vg</a></i> goes to the developers of <i>vg</i>. This Galaxy server only implements a simple wrapper around vg.</p>
             <br>
             <hr>
             <br>
 
             <h1>Tutorial: Running a graph-based ChIP-seq pipeline using vg and Graph Peak Caller</h1>
-            <p>In this tutorial, we will look at the Drosophila Melanogaster JRA transcription factor. The raw ChIP-seq data we will use is collected from <a href="https://www.encodeproject.org/experiments/ENCSR471GSA" target="_blank">this ENCODE experiment</a>.
+            <p>In this tutorial, we will look at the Drosophila Melanogaster SQZ transcription factor. The raw ChIP-seq data we will use is collected from replicate 1 of <a href="https://www.encodeproject.org/experiments/ENCSR923VWW" target="_blank">this ENCODE experiment</a>.
                 If you want to use your own data, you can upload your own fastq file using the Galaxy <i>Get Data</i> tool.</p>
 
             <p><b>Tip:</b> When doing this tutorial, you will be navigating around galaxy. If you need to get back to this page, you can simply click the Galaxy logo in the top left corner.</p>
@@ -45,23 +45,26 @@
                 Simply click on the <b>Swith to this history</b> link in the top right corner, and you will import the history and automatically be sent back to this page.</p>
             <br>
             <h4>Step 2: Map reads using vg</h4>
-            <p>By following the instructinos in step 1, you should now see a history on the right side of the screen showing the <b>ENCFF888CHA.fastq</b> dataset.
-            We will now map these reads to a the Drosophila Melanogaster Graph-Based reference. Go to the <b>vg map</b> tool by expanding the <b>vg tools</b> sub-menu in the left menu and clicking <b>Map reads to graph</b>.</p>
-            <p>Your fastq dataset should be pre-selected as input, so all you need to do is clicking the <b>Execute</b> button. A new history element appearing on the right side of your screen will turn green once mapping is finished. This should take a few minutes.</p>
+            <p>By following the instructinos in step 1, you should now see a history on the right side of the screen showing the <b>ENCFF888CHA.fastq</b> dataset as well as a <i>Meme</i>-file (we will use this later).
+            We will now map the reads to the Drosophila Melanogaster graph-based reference genome. Go to the <b>vg map</b> tool by expanding the <b>vg tools</b> sub-menu in the left menu and clicking <b>Map reads to graph</b>.</p>
+            <p>Your fastq dataset should be pre-selected as input, so all you need to do is clicking the <b>Execute</b> button. A new history element appearing on the right side of your screen will turn green once mapping is finished. This should take about 10 minutes.</p>
             <br>
             <h4>Step 3: Filtering </h4>
-            <p>Fro step 2, you now have a vg GAM file in you history. This is a binary file containing the paths (positions) that vg found for each read in the graph.
-                We want to filter out only the alignments that vg are certiain about. Do this by using the <b>Filter mapped vg reads</b>  tool, which you will find under <b>vg tools</b> in the left menu.
+            <p>From doing step 2, you should now have a vg GAM file in you history. This is a binary file containing the paths (positions) that vg found for each read in the graph.
+                We want to filter out only the alignments that vg are certiain about. Do this by using the <b>Filter mapped vg alignments</b>  tool, which you will find under <b>vg tools</b> in the left menu.
                 Make sure that the output from the previous tool is selected as input (it is by default). Setting <i>Minimum PHRED mapping quality required to keep a read</i> to <i>60</i> and <i>Minimum identity</i> to 0.95 should be fine for this tutorial.
-                Press the <b>Execute</b> button and return back to this page.</p>
+                Press the <b>Execute</b> button and return back to this page. Filtering the reads will take about 5 minutes.</p>
             <br>
             <h4>Step 4: Convert to JSON</h4>
             <p>Graph Peak Caller will only accept JSON input. Thus, we need to convert the GAM ouput from the previous tool to JSON by running the <b>Convert GAM to JSON</b> tool (which also is found under <b>vg tools</b>). As input, select the output from the filter tool (should be pre-selected).</p>
             <br>
             <h4>Step 5: Run Peak Calling</h4>
-            <p>Go to the <b>Graph Peak Caller</b> tool found under the <b>Graph Peak Caller</b> sub-menu on the left. As <i>Sample reads</i> select the JSON output from the previous tool. We do not have a separate control track (if you have, you simply select a control track in the input titled <i>Control reads mapped with vg (optional)</i>).</p>
-            <p>Make sure that <i>Genome</i> is set to <b>Drosophila Melanogaster</b>. Set read length to <b>50</b> and fragment length to <b>230</b>.</p>
-            <p>Press <b>Execute</b>. Calling peaks on Drosophila Melanogaster should take about 10-20 minutes. The tool produces several output files (see below).</p>
+            <p>Go to the <b>Graph Peak Caller</b> tool found under the <b>Graph Peak Caller</b> sub-menu on the left. As <i>Sample reads</i> select the JSON output from the previous tool.
+                We do not have a separate control track (if you have, you simply select a control track in the input titled <i>Control reads mapped with vg (optional)</i>).
+                Select the meme file <b>DM_SQZ.meme</b> in the <i>Meme motif file</i> selection field.
+            </p>
+            <p>Make sure that <i>Genome</i> is set to <b>Drosophila Melanogaster</b>. Set read length to <b>50</b> and fragment length to <b>240</b>.</p>
+            <p>Press <b>Execute</b>. Calling peaks on Drosophila Melanogaster should take about 30-45 minutes. The tool produces several output files (see below).</p>
             <br>
             <h4>Output files</h4>
             <p>Graph Peak caller will produce peaks in multiple formats, making it easier for the user to find a format that is suitable for further analysis.</p>
@@ -76,10 +79,10 @@
 
             <h1>Data</h1>
             <h3>Drosophila Melanogaster</h3>
-            <p>This graph-based reference genome is created using the SNP and Indels from <a href="http://www.iipl.fudan.edu.cn/FlyVar/sourcefordownloading.jsp" target="_blank">FlyVar</a> and the <i>dm3</i> reference genome.</p>
+            <p>This graph-based reference genome is created using the SNPs and indels from <a href="http://www.iipl.fudan.edu.cn/FlyVar/sourcefordownloading.jsp" target="_blank">FlyVar</a> and the <i>dm3</i> reference genome.</p>
             <p>The vg graphs, indices, Offset Based Graphs, linear paths etc can be downloaded by <a href="">clicking here.</a></p>
             <h3>Arabidopsis Thaliana</h3>
-            <p>This grapb-based reference genome is created using the SNP and Indels the <a href="http://1001genomes.org" target="_blank">1001 geomes project</a> and the <i>tair10</i> reference genome.</p>
+            <p>This grapb-based reference genome is created using the SNP and indels from <a href="http://1001genomes.org" target="_blank">the 1001 Geomes Project</a> and the <i>tair10</i> reference genome.</p>
             <p>The vg graphs, indices, Offset Based Graphs, linear paths etc can be downloaded by <a href="">clicking here.</a></p>
             <hr>
         </div>
