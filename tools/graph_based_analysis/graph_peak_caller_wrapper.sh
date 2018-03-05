@@ -11,6 +11,7 @@ fragment_length=$4
 control=$5
 out_fasta_file=$6
 out_json_file=$7
+out_linear_peaks_file=$8
 
 echo "Running with sample $sample."
 
@@ -80,3 +81,12 @@ wait
 
 /usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py concatenate_sequence_files $chromosomes $out_fasta_file  > log_concatenating.txt 2>&1
 cat *_max_paths.intervalcollection >> $out_json_file
+
+# Get linear peaks
+> linear_peaks.bed
+for chromosome in $(echo $chromosomes | tr "," "\n")
+do
+    /usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py peaks_to_linear $chromosome_max_paths.intervalcollection $graph_dir/$chromosome_linear_pathv2.interval $chromosome linear_peaks_$chromosome.bed
+done
+
+cat linear_peaks_*.bed >> $out_linear_peaks_file

@@ -1,6 +1,6 @@
 <tool id="graph_peak_caller" name="Graph Peak Caller" version="0.1.0">
   <description></description>
-  <command>/data/galaxy/galaxy-graph-peak-caller/tools/graph_based_analysis/graph_peak_caller_wrapper.sh $genome $sample $read_length $fragment_length $control $out_peaks_as_sequences $out_peaks_as_json</command>
+  <command>/data/galaxy/galaxy-graph-peak-caller/tools/graph_based_analysis/graph_peak_caller_wrapper.sh $genome $sample $read_length $fragment_length $control $out_peaks_as_sequences $out_peaks_as_json $out_linear_peak</command>
   <inputs>
     <param format="json" name="sample" type="data" label="Sample reads mapped with vg" argument="This is the sample reads. Must be vg alignment JSON format."/>
     <param format="json" name="control" type="data" optional="True" label="Control reads mapped with vg (optional) " argument="Optional. Leave blank if no control"/>
@@ -18,6 +18,7 @@
   <outputs>
     <data format="fasta" name="out_peaks_as_sequences" file="peaks.fasta"/>
     <data format="json" name="out_peaks_as_json" file="peaks.json"/>
+    <data format="json" name="out_linear_peaks" file="linear_peaks.bed"/>
   </outputs>
 
 
