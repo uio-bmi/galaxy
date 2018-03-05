@@ -13,6 +13,7 @@ out_fasta_file=$6
 out_json_file=$7
 out_linear_peaks_file=$8
 out_differentially_expressed=$9
+motif=$motif
 
 echo "Running with sample $sample."
 
@@ -93,21 +94,25 @@ done
 
 cat linear_peaks_*.bed >> $out_linear_peaks_file
 
-# Run fimo for each chromosome
-for chromosome in $(echo $chromosomes | tr "," "\n")
-do
-    echo ""
-    echo "----- Running fimo separately for chr $chromosome --- "
-    fimo -oc fimo_macs_chr$chromosome motif.meme macs_sequences_chr${chromosome}.fasta
-    fimo -oc fimo_graph_chr$chromosome motif.meme ${chromosome}_sequences.fasta
+if [ $control = "None" ]; then
+    echo "Not finding differentially expressed peaks, since motif file was not submitted."
+else
+    echo "Finding differentially expresed peaks."
+
+    # Run fimo for each chromosome
+    for chromosome in $(echo $chromosomes | tr "," "\n")
+    do
+        echo "----- Running fimo separately for chr $chromosome --- "
+        /data/galaxy/galaxy-graph-peak-caller/static/graph_peak_caller_data/fimo -oc fimo_$chromosome $motif ${chromosome}_sequences.fasta
+    done
+
+    # Collection differentially expressed data
+    for chromosome in $(echo $chromosomes | tr "," "\n")
+    do
+        /usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py diffexpr \
+            $chromosome $graph_dir/$chromosome.nobg fimo_$chromosome/fimo.txt $graph_dir/$chromosome.json
+
+        cat ${chromosome}_diffexpr.fasta >> $out_differentially_expressed
+    done
+
 done
-
-# Collection differentially expressed data
-for chromosome in $(echo $chromosomes | tr "," "\n")
-do
-    /usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py diffexpr \
-        $chromosome $graph_dir/$chromosome.nobg fimo_$chromosome/fimo.txt $graph_dir/$chromosome.json
-
-    cat ${chromosome}_diffexpr.fasta >> $out_differentially_expressed
-done
-

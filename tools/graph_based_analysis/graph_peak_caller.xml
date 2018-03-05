@@ -1,9 +1,10 @@
 <tool id="graph_peak_caller" name="Graph Peak Caller" version="0.1.0">
   <description></description>
-  <command>/data/galaxy/galaxy-graph-peak-caller/tools/graph_based_analysis/graph_peak_caller_wrapper.sh $genome $sample $read_length $fragment_length $control $out_peaks_as_sequences $out_peaks_as_json $out_linear_peaks $out_differentially_expressed</command>
+  <command>/data/galaxy/galaxy-graph-peak-caller/tools/graph_based_analysis/graph_peak_caller_wrapper.sh $genome $sample $read_length $fragment_length $control $out_peaks_as_sequences $out_peaks_as_json $out_linear_peaks $out_differentially_expressed $motif</command>
   <inputs>
     <param format="json" name="sample" type="data" label="Sample reads mapped with vg" argument="This is the sample reads. Must be vg alignment JSON format."/>
     <param format="json" name="control" type="data" optional="True" label="Control reads mapped with vg (optional) " argument="Optional. Leave blank if no control"/>
+    <param format="meme" name="motif" type="data" optional="True" label="Meme motif file (optional) " argument="Optional. If you select a meme motif file, Graph Peak Caller wil also return a list of peaks that are differentially expressed in areas enrichet for motif."/>
 
 
     <param name="genome" type="select" label="Genome" argument="Select genome you want to run peak calling on. Must match genome used when mapping reads.">
