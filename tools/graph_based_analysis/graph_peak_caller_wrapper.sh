@@ -43,7 +43,7 @@ echo "Found $unique_reads unique control reads."
 echo "Has control $has_control"
 
 echo "Splitting reads"
-/usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py split_vg_json_reads_into_chromosomes $chromosomes $sample $graph_dir > log_splitting.txt 2>&1
+/usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py split_vg_json_reads_into_chromosomes $chromosomes $sample $graph_dir
 
 if [ $sample != $control ]; then
     /usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py split_vg_json_reads_into_chromosomes $chromosomes $control $graph_dir
@@ -64,7 +64,7 @@ for chromosome in $(echo $chromosomes | tr "," "\n")
 do
     /usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py callpeaks_whole_genome $chromosome $graph_dir/ $graph_dir/ \
             $graph_dir/linear_map_ "${sample_base_name}_" "${control_base_name}_" "" $has_control \
-            $fragment_length $read_length True $unique_reads $genome_size > log_before_pvalues_chr$chromosome.txt 2>&1 &
+            $fragment_length $read_length True $unique_reads $genome_size  # > log_before_pvalues_chr$chromosome.txt 2>&1 &
 done
 
 wait
@@ -72,10 +72,10 @@ wait
 for chromosome in $(echo $chromosomes | tr "," "\n")
 do
 	python3.6 /usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py callpeaks_whole_genome_from_p_values \
-                $chromosome $graph_dir/ "" $has_control $fragment_length $read_length > log_after_pvalues_chr$chromosome.txt 2>&1&
+                $chromosome $graph_dir/ "" $has_control $fragment_length $read_length # > log_after_pvalues_chr$chromosome.txt 2>&1&
 done
 
 wait
 
-python3.6 /usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py concatenate_sequence_files $chromosomes $out_fasta_file > log_concatenating.txt 2>&1
+python3.6 /usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py concatenate_sequence_files $chromosomes $out_fasta_file  # > log_concatenating.txt 2>&1
 cat *_max_paths.intervalcollection >> $out_json_file
