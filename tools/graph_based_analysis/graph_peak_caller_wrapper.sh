@@ -71,11 +71,11 @@ wait
 
 for chromosome in $(echo $chromosomes | tr "," "\n")
 do
-	python3.6 /usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py callpeaks_whole_genome_from_p_values \
+	/usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py callpeaks_whole_genome_from_p_values \
                 $chromosome $graph_dir/ "" $has_control $fragment_length $read_length # > log_after_pvalues_chr$chromosome.txt 2>&1&
 done
 
 wait
 
-python3.6 /usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py concatenate_sequence_files $chromosomes $out_fasta_file  # > log_concatenating.txt 2>&1
+/usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py concatenate_sequence_files $chromosomes $out_fasta_file  # > log_concatenating.txt 2>&1
 cat *_max_paths.intervalcollection >> $out_json_file
