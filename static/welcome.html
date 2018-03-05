@@ -20,13 +20,13 @@
             <h1>Overview</h1>
             <p>This Galaxy server contains 4 tools making it possible to run a simple graph-based ChIP-seq pipeline, going from raw ChIP-seq reads to peaks:</p>
             <ul>
-                <li><i>vg map</i>: A simple wrapper around vg, making it possible to map reads to one of our pre-compiled graphs</li>
-                <li><i>vg filter</i>: Filtering reads mapped with vg map</li>
-                <li><i>Convert GAM to JSON</i>: A simple wrapper around the <i>vg view</i> command, converting the output from vg map to a format accepted by Graph Peak Caller</li>
-                <li><i>Graph Peak Caller</i>: Takes vg JSON alignments as input and calls peaks on one of our pre-compiled graph-based reference genomes.</li>
+                <li><a href="https://hyperbrowser.uio.no/graph-peak-caller?tool_id=vg_map&version=0.1.0&__identifer=tjlqvp2c7">Map reads to graph</a>: A simple wrapper around vg, making it possible to map reads to one of our pre-compiled graphs</li>
+                <li><a href="https://hyperbrowser.uio.no/graph-peak-caller?tool_id=vg_filter&version=0.1.0&__identifer=ywiokm6bv8a">Filter mapped vg reads</a>: Filtering reads mapped with vg map</li>
+                <li><a href="https://hyperbrowser.uio.no/graph-peak-caller?tool_id=vg_view&version=0.1.0&__identifer=ft4pmh6hmk">Convert GAM to JSON</a>: A simple wrapper around the <i>vg view</i> command, converting the output from vg map to a format accepted by Graph Peak Caller</li>
+                <li><a href="https://hyperbrowser.uio.no/graph-peak-caller?tool_id=graph_peak_caller&version=0.1.0&__identifer=gnt9r7kfuut">Graph Peak Caller</a>: Takes vg JSON alignments as input and calls peaks on one of our pre-compiled graph-based reference genomes.</li>
             </ul>
-            <p>This server currently have pre-compiled graph-based reference genomes for Arabidopsis Thaliana and Drosophila Melanogaster. Feel free to contact us if you have suggestions for other genomes we should support.
-                Also, note that if you have your own graph-based reference genome, you can use <a href="https://github.com/uio-bmi/graph_peak_caller/wiki/Graph-based-ChIP-seq-tutorial" target="_blank">Graph Peak Caller and vg from the command line</a>.</p>
+            <p>This server currently has pre-compiled graph-based reference genomes for <i>Arabidopsis Thaliana</i> and <i>Drosophila Melanogaster</i>. Feel free to contact us if you have suggestions for other genomes we should support.
+                Also, note that if you have your own graph-based reference genome, or special needs not supported by this server, you can use <a href="https://github.com/uio-bmi/graph_peak_caller/wiki/Graph-based-ChIP-seq-tutorial" target="_blank">Graph Peak Caller and vg from the command line</a>.</p>
             <p>All credits for <i>vg</i> goes to the developers of <i>vg</i>. This Galaxy server only implements a simple wrapper around vg.</p>
             <br>
             <hr>

@@ -12,6 +12,7 @@ control=$5
 out_fasta_file=$6
 out_json_file=$7
 out_linear_peaks_file=$8
+out_differentially_expressed=$9
 
 echo "Running with sample $sample."
 
@@ -90,3 +91,5 @@ do
 done
 
 cat linear_peaks_*.bed >> $out_linear_peaks_file
+
+echo "Test" > out_differentially_expressed.csv
