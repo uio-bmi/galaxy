@@ -1,6 +1,6 @@
 <tool id="vg_filter" name="Filter mapped vg reads" version="0.1.0">
   <description></description>
-  <command>/home/ivargry/dev/galaxy/tools/graph_based_analysis/vg filter -q $q -r $r -s 2.0 $reads > $output</command>
+  <command>/data/galaxy/galaxy-graph-peak-caller/static/graph_peak_caller_data/vg filter -q $q -r $r -s 2.0 $reads > $output</command>
   <inputs>
     <param format="gam" name="reads" type="data" label="Reads to filter" argument="This should be a GAM file returned by vg map."/>
 

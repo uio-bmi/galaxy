@@ -73,7 +73,7 @@ wait
 for chromosome in $(echo $chromosomes | tr "," "\n")
 do
 	/usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py callpeaks_whole_genome_from_p_values \
-                $chromosome $graph_dir/ "" $has_control $fragment_length $read_length > log_after_pvalues_chr$chromosome.txt 2>&1&
+                $chromosome $graph_dir/ "" $has_control $fragment_length $read_length #> log_after_pvalues_chr$chromosome.txt 2>&1&
 done
 
 wait

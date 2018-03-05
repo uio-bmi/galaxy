@@ -1,6 +1,6 @@
 <tool id="vg_view" name="Convert GAM to JSON" version="0.1.0">
   <description></description>
-  <command>/home/ivargry/dev/galaxy/tools/graph_based_analysis/vg view -aj $reads > $output</command>
+  <command>/data/galaxy/galaxy-graph-peak-caller/static/graph_peak_caller_data/vg view -aj $reads > $output</command>
   <inputs>
     <param format="gam" name="reads" type="data" label="Alignments to filter" argument="This should be a GAM file returned by vg map or vg filter."/>
 
