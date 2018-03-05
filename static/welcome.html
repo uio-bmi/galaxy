@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style/base.css" type="text/css" />
+    </head>
+    <body style="margin: 0">
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Graph Peak Caller</h1>
+                <br>
+                <p>This is a Galaxy server intended for running <a href="http://github.com/uio-bmi/graph_peak_caller" target="_blank"><b>Graph Peak Caller</b></a> and <a href="https://github.com/vgteam/vg" target="_blank"><b>vg</b></a>.</p>
+                <p>Check out the simple guide below to get started!</p>
+
+            </div>
+            <br>
+        </div>
+        <div class="container">
+
+            <h1>How to use this Galaxy server</h1>
+            <h3>Introduction</h3>
+            <p>This Galaxy server contains 4 tools making it possible to run a simple graph-based ChIP-seq pipeline, going from raw ChIP-seq reads to peaks:</p>
+            <ul>
+                <li><i>vg map</i>: A simple wrapper around vg, making it possible to map reads to one of our pre-compiled graphs</li>
+                <li><i>vg filter</i>: Filtering reads mapped with vg map</li>
+                <li><i>Converting vg reads to json</i>: A simple wrapper around the <i>vg view</i> command</li>
+                <li><i>Graph Peak Caller</i>: Takes vg json alignments as input and call peaks on one of our pre-compiled graph-based reference genomes.</li>
+            </ul>
+            <p>This server currently have pre-compiled graph-based reference genomes for Arabidopsis Thaliana and Drosophila Melanogaster. Feel free to contact us if you have suggestions for other genomes we should support.
+                Also, note that if you have your own graph-based reference genome, you can use <a href="https://github.com/uio-bmi/graph_peak_caller/wiki/Graph-based-ChIP-seq-tutorial" target="_blank">Graph Peak Caller and vg from the command line</a>.</p>
+            <br>
+            <hr>
+            <br>
+
+            <h3>Tutorial: Running a graph-based ChIP-seq pipeline using vg and Graph Peak Caller</h3>
+            <p>In this tutorial, we will look at the Drosophila Melanogaster JRA transcription factor. The raw ChIP-seq data we will use is collected from <a href="https://www.encodeproject.org/experiments/ENCSR471GSA" target="_blank">this ENCODE experiment</a>.
+                If you want to use your own data, you can upload your own fastq file using the Galaxy <i>Get Data</i> tool.</p>
+
+            <p><b>Tip:</b> When doing this tutorial, you will be navigating around galaxy. If you need to get back to this page, you can simply click the Galaxy logo in the top left corner.</p>
+            <br>
+            <h4>Step 1: Preparing the data</h4>
+            <p><a href="https://hyperbrowser.uio.no/graph-peak-caller/u/ivar/h/drosophila-melanogaster-example">Click here</a> to go
+                to our example history which contains the fastq data set that we will use in this tutorial.
+                When clicking the link, you will be sent to a new page where you will see the example history.
+                Simply click <b>Swith to this history</b> in the top right corner, and you will import the history and be returned back to this tutorial.</p>
+            <br>
+            <h4>Step 2: Map reads using vg</h4>
+            <p>By following the previous step, you should now have a history on the right side showing the <b>ENCFF888CHA.fastq</b> dataset.</p>
+            <p>We will now map these reads to a the Drosophila Melanogaster Graph-Based reference. Go to the <b>vg map</b> tool by expanding the <b>vg tools</b> section in the left menu and clicking <b>Map reads to graph</b>.</p>
+            <p>Your fastq dataset should be pre-selected, so all you need to do is to press the <b>Execute</b> button. The new history element appearing on the right side of your screenwill turn green once mapping is finished. This should take a few minutes.</p>
+
+            <h4>Step 3: Filtering </h4>
+            <p>Filter the alignments by using the <b>Filter mapped vg reads</b> tool, which you will find under <b>vg tools</b> in the left menu.
+                Make sure that the output from the previous tool is selected as input (it is by default). Setting <i>Minimum PHRED mapping quality required to keep a read</i> to <i>60</i> and <i>Minimum identity</i> to 0.95 should be fine for this tutorial. Press the <b>Execute</b> button and return to this page.</p>
+
+            <h4>Step 4: Convert to JSON</h4>
+            <p>Graph Peak Caller will only accept JSON input. Thus, we need to convert the GAM ouput from the previous tool to JSON by running the <b>Convert GAM to JSON</b> to (which also is found under <b>vg tools</b>). As input, select the output from the filter tool.</p>
+
+            <h4>Step 5: Run Peak Calling</h4>
+            <p>Go to the <b>Graph Peak Caller</b> tool found under the <b>Graph Peak Caller</b> sub-menu on the left. As <i>Sample reads</i> select the JSON output from the previous tool. We do not have a separate control track (if you have, you simply select a control track in the input title <i>Control reads mapped with vg (optional)</i>).</p>
+            <p>Make sure that <i>Genome</i>is set to <b>Drosophila Melanogaster</b>. Our read length is <b>50</b> and fragment length is <b>230</b>.</p>
+            <p>Press <b>Execute.</b>. This should take about 10-20 minutes. The tool produces several output files (see below).</p>
+            <hr>
+
+            <h4>Output files</h4>
+            <ul>
+                <li>Fasta</li>
+                <li>Peaks as intervalcollection</li>
+                <li>Differentially expressed peaks</li>
+                <li></li>
+            </ul>
+
+            <h1>Data</h1>
+
+            <hr>
+            <p>All credits for <i>vg</i> goes to the developers of <i>vg</i>. This Galaxy server only implements a simple wrapper around vg.</p>
+        </div>
+        </p>
+    </body>
+</html>
