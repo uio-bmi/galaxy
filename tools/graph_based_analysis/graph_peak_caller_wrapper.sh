@@ -36,7 +36,7 @@ fi
 
 echo "Will use genome size $genome_size"
 
-graph_dir="/home/ivargry/dev/galaxy/static/$genome/"
+graph_dir="/data/galaxy/galaxy-graph-peak-caller/static/graph_peak_caller_data/$genome/"
 unique_reads=$(pcregrep -o1 '"sequence": "([ACGTNacgtn]{20,})"' $control | sort | uniq | wc -l)
 
 echo "Found $unique_reads unique control reads."
