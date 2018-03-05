@@ -60,14 +60,14 @@
             <br>
             <h4>Step 5: Run Peak Calling</h4>
             <p>Go to the <b>Graph Peak Caller</b> tool found under the <b>Graph Peak Caller</b> sub-menu on the left. As <i>Sample reads</i> select the JSON output from the previous tool. We do not have a separate control track (if you have, you simply select a control track in the input titled <i>Control reads mapped with vg (optional)</i>).</p>
-            <p>Make sure that <i>Genome</i>is set to <b>Drosophila Melanogaster</b>. Our read length is <b>50</b> and fragment length is <b>230</b>.</p>
-            <p>Press <b>Execute</b>. This should take about 10-20 minutes. The tool produces several output files (see below).</p>
-
+            <p>Make sure that <i>Genome</i> is set to <b>Drosophila Melanogaster</b>. Set read length to <b>50</b> and fragment length to <b>230</b>.</p>
+            <p>Press <b>Execute</b>. Calling peaks on Drosophila Melanogaster should take about 10-20 minutes. The tool produces several output files (see below).</p>
+            <br>
             <h4>Output files</h4>
             <p>Graph Peak caller will produce peaks in multiple formats, making it easier for the user to find a format that is suitable for further analysis.</p>
             <ul>
-                <li><i>peaks_as_graph_intervals.intervalcollection</i>: This is a file containing peaks represented as intervals on the graph in a JSON format. This file can be imported programatically by Graph Peak Caller.</li>
-                <li><i>peaks.fasta</i>: The sequences (in the graph) of the peaks.</li>
+                <li><i>peaks_as_graph_intervals.intervalcollection</i>: This is a file containing peaks represented as intervals on the graph in a JSON format. This file can be read by the Python package <i>graph_peak_caller</i>.</li>
+                <li><i>peaks.fasta</i>: The sequences of the peaks.</li>
                 <li><i>differentially_expressed.csv</i>: A list of peaks that are differentially expressed. Each line is on the form <i>sequence1,sequence2,n_reads1,n_reads2</i> where
                     <i>sequence1</i> and <i>sequences2</i> are the sequences of two paths going through the peak, each starting at the same position, and <i>n_reads1</i> and <i>n_reads2</i> are the number of reads mapping to each path respectively.</li>
                 <li><i>approx_linear_peaks.bed</i>: Approximate position of peaks when "projected" down to the linear path going through the graph. Useful if comparing with other data on a linear reference genome. </li>

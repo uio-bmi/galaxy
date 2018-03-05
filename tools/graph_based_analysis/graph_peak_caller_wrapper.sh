@@ -30,7 +30,7 @@ fi
 if [ $genome = "drosophila_melanogaster" ]; then
     genome_size="98000000"
     chromosomes="chr3R,chr3L,chr2R,chr2L,chrX,chr4"
-    chromosomes="chrX,chr4"
+    #chromosomes="chrX,chr4"
 elif [ $genome = "arabidopsis_thaliana" ] ; then
     genome_size="135000000"
 else
