@@ -93,4 +93,21 @@ done
 
 cat linear_peaks_*.bed >> $out_linear_peaks_file
 
-echo "Test" > out_differentially_expressed.csv
+# Run fimo for each chromosome
+for chromosome in $(echo $chromosomes | tr "," "\n")
+do
+    echo ""
+    echo "----- Running fimo separately for chr $chromosome --- "
+    fimo -oc fimo_macs_chr$chromosome motif.meme macs_sequences_chr${chromosome}.fasta
+    fimo -oc fimo_graph_chr$chromosome motif.meme ${chromosome}_sequences.fasta
+done
+
+# Collection differentially expressed data
+for chromosome in $(echo $chromosomes | tr "," "\n")
+do
+    /usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py diffexpr \
+        $chromosome $graph_dir/$chromosome.nobg fimo_$chromosome/fimo.txt $graph_dir/$chromosome.json
+
+    cat ${chromosome}_diffexpr.fasta >> $out_differentially_expressed
+done
+

@@ -59,6 +59,10 @@ class Html(Text):
             return True
 
 
+class Meme(Text):
+    file_ext = "meme"
+
+
 class Json(Text):
     edam_format = "format_3464"
     file_ext = "json"
