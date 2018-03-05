@@ -1,5 +1,7 @@
 source activate py36
-alias graph_peak_caller="~/.conda/envs/py36/bin/python3.6 ~/graph_peak_caller/graph_peak_caller/command_line_interface.py"
+alias graph_peak_caller="/usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py"
+
+graph_peak_caller
 
 echo "Running."
 
