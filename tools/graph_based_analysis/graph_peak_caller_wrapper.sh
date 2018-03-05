@@ -13,7 +13,7 @@ out_fasta_file=$6
 out_json_file=$7
 out_linear_peaks_file=$8
 out_differentially_expressed=$9
-motif=$motif
+motif=${10}
 
 echo "Running with sample $sample."
 
@@ -96,6 +96,7 @@ cat linear_peaks_*.bed >> $out_linear_peaks_file
 
 if [ $control = "None" ]; then
     echo "Not finding differentially expressed peaks, since motif file was not submitted."
+    echo "Not reported. Requires an input motif file in the tool." > $out_differentially_expressed
 else
     echo "Finding differentially expresed peaks."
 

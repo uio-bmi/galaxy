@@ -61,8 +61,7 @@
             <h4>Step 5: Run Peak Calling</h4>
             <p>Go to the <b>Graph Peak Caller</b> tool found under the <b>Graph Peak Caller</b> sub-menu on the left. As <i>Sample reads</i> select the JSON output from the previous tool. We do not have a separate control track (if you have, you simply select a control track in the input titled <i>Control reads mapped with vg (optional)</i>).</p>
             <p>Make sure that <i>Genome</i>is set to <b>Drosophila Melanogaster</b>. Our read length is <b>50</b> and fragment length is <b>230</b>.</p>
-            <p>Press <b>Execute.</b>. This should take about 10-20 minutes. The tool produces several output files (see below).</p>
-            <hr>
+            <p>Press <b>Execute</b>. This should take about 10-20 minutes. The tool produces several output files (see below).</p>
 
             <h4>Output files</h4>
             <p>Graph Peak caller will produce peaks in multiple formats, making it easier for the user to find a format that is suitable for further analysis.</p>
@@ -73,13 +72,14 @@
                     <i>sequence1</i> and <i>sequences2</i> are the sequences of two paths going through the peak, each starting at the same position, and <i>n_reads1</i> and <i>n_reads2</i> are the number of reads mapping to each path respectively.</li>
                 <li><i>approx_linear_peaks.bed</i>: Approximate position of peaks when "projected" down to the linear path going through the graph. Useful if comparing with other data on a linear reference genome. </li>
             </ul>
+            <hr>
 
             <h1>Data</h1>
             <h3>Drosophila Melanogaster</h3>
-            <p>This graph is created using the SNP and Indels from <a href="http://www.iipl.fudan.edu.cn/FlyVar/sourcefordownloading.jsp" target="_blank">FlyVar</a> and the <i>dm3</i> reference genome</p>.
+            <p>This graph-based reference genome is created using the SNP and Indels from <a href="http://www.iipl.fudan.edu.cn/FlyVar/sourcefordownloading.jsp" target="_blank">FlyVar</a> and the <i>dm3</i> reference genome.</p>
             <p>The vg graphs, indices, Offset Based Graphs, linear paths etc can be downloaded by <a href="">clicking here.</a></p>
             <h3>Arabidopsis Thaliana</h3>
-            <p>This graph is created using the SNP and Indels the <a href="http://1001genomes.org" target="_blank">1001 geomes project</a> and the <i>tair10</i> reference genome</p>.
+            <p>This grapb-based reference genome is created using the SNP and Indels the <a href="http://1001genomes.org" target="_blank">1001 geomes project</a> and the <i>tair10</i> reference genome.</p>
             <p>The vg graphs, indices, Offset Based Graphs, linear paths etc can be downloaded by <a href="">clicking here.</a></p>
             <hr>
         </div>
