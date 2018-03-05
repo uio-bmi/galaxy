@@ -1,7 +1,7 @@
 source activate py36
 which pip
 which python3.6
-python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py
+$graph_peak_caller="/usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py"
 
 exit 0
 
@@ -44,10 +44,10 @@ echo "Found $unique_reads unique control reads."
 echo "Has control $has_control"
 
 echo "Splitting reads"
-graph_peak_caller split_vg_json_reads_into_chromosomes $chromosomes $sample $graph_dir > log_splitting.txt 2>&1
+python3.6  $graph_peak_caller split_vg_json_reads_into_chromosomes $chromosomes $sample $graph_dir > log_splitting.txt 2>&1
 
 if [ $sample != $control ]; then
-    graph_peak_caller split_vg_json_reads_into_chromosomes $chromosomes $control $graph_dir
+    python3.6 $graph_peak_caller split_vg_json_reads_into_chromosomes $chromosomes $control $graph_dir
 fi
 
 
@@ -63,7 +63,7 @@ control_base_name=$(echo $control | cut -f 1 -d '.')
 
 for chromosome in $(echo $chromosomes | tr "," "\n")
 do
-    graph_peak_caller callpeaks_whole_genome $chromosome $graph_dir/ $graph_dir/ \
+    python3.6 $graph_peak_caller callpeaks_whole_genome $chromosome $graph_dir/ $graph_dir/ \
             $graph_dir/linear_map_ "${sample_base_name}_" "${control_base_name}_" "" $has_control \
             $fragment_length $read_length True $unique_reads $genome_size > log_before_pvalues_chr$chromosome.txt 2>&1 &
 done
@@ -72,11 +72,11 @@ wait
 
 for chromosome in $(echo $chromosomes | tr "," "\n")
 do
-	graph_peak_caller callpeaks_whole_genome_from_p_values \
+	python3.6 $graph_peak_caller callpeaks_whole_genome_from_p_values \
                 $chromosome $graph_dir/ "" $has_control $fragment_length $read_length > log_after_pvalues_chr$chromosome.txt 2>&1&
 done
 
 wait
 
-graph_peak_caller concatenate_sequence_files $chromosomes $out_fasta_file > log_concatenating.txt 2>&1
+python3.6 $graph_peak_caller concatenate_sequence_files $chromosomes $out_fasta_file > log_concatenating.txt 2>&1
 cat *_max_paths.intervalcollection >> $out_json_file
