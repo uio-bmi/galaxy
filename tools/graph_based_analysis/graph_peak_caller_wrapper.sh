@@ -1,8 +1,6 @@
 source activate py36
 alias graph_peak_caller="~/.conda/envs/py36/bin/python3.6 ~/graph_peak_caller/graph_peak_caller/command_line_interface.py"
 
-exit 0
-
 genome=$1
 sample=$2
 read_length=$3
