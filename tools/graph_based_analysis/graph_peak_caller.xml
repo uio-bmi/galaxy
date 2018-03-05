@@ -16,9 +16,9 @@
 
   </inputs>
   <outputs>
-    <data format="fasta" name="out_peaks_as_sequences" file="peaks.fasta"/>
-    <data format="json" name="out_peaks_as_json" file="peaks.json"/>
-    <data format="json" name="out_linear_peaks" file="linear_peaks.bed"/>
+    <data format="fasta" name="out_peaks_as_sequences" file="peaks.fasta" label="peaks.fasta"/>
+    <data format="json" name="out_peaks_as_json" file="peaks.json" label="peaks.json"/>
+    <data format="json" name="out_linear_peaks" file="linear_peaks.bed" label="linear_peaks.bed"/>
   </outputs>
 
 
