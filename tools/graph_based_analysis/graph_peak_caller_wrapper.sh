@@ -87,7 +87,8 @@ cat *_max_paths.intervalcollection >> $out_json_file
 > linear_peaks.bed
 for chromosome in $(echo $chromosomes | tr "," "\n")
 do
-    /usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py peaks_to_linear ${chromosome}_max_paths.intervalcollection $graph_dir/${chromosome}_linear_pathv2.interval $chromosome linear_peaks_$chromosome.bed
+    /usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py \
+        peaks_to_linear ${chromosome}_max_paths.intervalcollection $graph_dir/${chromosome}_linear_pathv2.interval $chromosome linear_peaks_$chromosome.bed > diff_expressed_log.txt 2>&1
 done
 
 cat linear_peaks_*.bed >> $out_linear_peaks_file
