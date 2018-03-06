@@ -16,7 +16,7 @@
 
 
   <help>
-        This tool is a basic wrapper around <i>vg map</i> for single-end reads. The tool runs the command <i>vg map -f reads.fq -g index.gcsa -x index.xg</i> without tweaking any other parameters of <i>vg map</i>.
+        This tool is a basic wrapper around vg map for single-end reads. The tool runs the command vg map -f reads.fq -g index.gcsa -x index.xg without tweaking any other parameters of vg map.
   </help>
 
 </tool>

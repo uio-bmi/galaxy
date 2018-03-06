@@ -14,7 +14,7 @@
 
 
   <help>
-    This tool runs <i>vg filter -q min_mapping_quality -r min_identity -s 2.0 input.gam > output.gam</i>.
+    This tool runs vg filter -q min_mapping_quality -r min_identity -s 2.0 input.gam > output.gam.
   </help>
 
 </tool>
