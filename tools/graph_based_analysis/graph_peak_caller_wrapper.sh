@@ -68,7 +68,7 @@ for chromosome in $(echo $chromosomes | tr "," "\n")
 do
     /usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py callpeaks_whole_genome $chromosome -d $graph_dir/  \
             -s "${sample_base_name}_" \
-            -f $fragment_length -r $read_length -p True -u $unique_reads -g $genome_size > log_before_pvalues_chr$chromosome.txt 2>&1 &
+            -f $fragment_length -r $read_length -p True -u $unique_reads -g $genome_size > log_before_pvalues_chr$chromosome.txt #2>&1 &
 done
 
 wait
@@ -76,7 +76,7 @@ wait
 for chromosome in $(echo $chromosomes | tr "," "\n")
 do
 	/usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py callpeaks_whole_genome_from_p_values \
-                $chromosome -d $graph_dir -f $fragment_length -r $read_length > log_after_pvalues_chr$chromosome.txt 2>&1&
+                $chromosome -d $graph_dir -f $fragment_length -r $read_length > log_after_pvalues_chr$chromosome.txt #2>&1&
 done
 
 wait
