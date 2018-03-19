@@ -25,7 +25,7 @@
                 <li><a target="_top" href="https://hyperbrowser.uio.no/graph-peak-caller?tool_id=vg_view&version=0.1.0&__identifer=ft4pmh6hmk">Convert GAM to JSON</a>: A simple wrapper around the <i>vg view</i> command. Converts the output from vg map to a format accepted by Graph Peak Caller</li>
                 <li><a target="_top" href="https://hyperbrowser.uio.no/graph-peak-caller?tool_id=graph_peak_caller&version=0.1.0&__identifer=gnt9r7kfuut">Graph Peak Caller</a>: Takes vg JSON alignments as input and calls peaks on one of our pre-generated graph-based reference genomes.</li>
             </ul>
-            <p>This server currently has pre-generated graph-based reference genomes for <i>Arabidopsis Thaliana</i> and <i>Drosophila Melanogaster</i>. Feel free to contact us if you have suggestions for other genomes we should support.
+            <p>This server currently has pre-generated graph-based reference genomes for <i>Arabidopsis thaliana</i>, <i>Saccharomyces cerevisiae</i> and <i>Drosophila melanogaster</i>. Feel free to contact us if you have suggestions for other genomes we should support.
                 Also, note that if you have your own graph-based reference genome, or special needs not supported by this server, you can use <a href="https://github.com/uio-bmi/graph_peak_caller/wiki/Graph-based-ChIP-seq-tutorial" target="_blank">Graph Peak Caller and vg from the command line</a>.</p>
             <p>All credits for <i><a href="https://github.com/vgteam/vg" target="_blank">vg</a></i> goes to the developers of <i>vg</i>. This Galaxy server only implements a simple wrapper around vg.</p>
             <br>
@@ -33,7 +33,7 @@
             <br>
 
             <h1>Tutorial: Running a graph-based ChIP-seq pipeline using vg and Graph Peak Caller</h1>
-            <p>In this tutorial, we will look at the Drosophila Melanogaster SQZ transcription factor. The raw ChIP-seq data we will use is collected from replicate 1 of <a href="https://www.encodeproject.org/experiments/ENCSR923VWW" target="_blank">this ENCODE experiment</a>.
+            <p>In this tutorial, we will look at the D. melanogaster SQZ transcription factor. The raw ChIP-seq data we will use is collected from replicate 1 of <a href="https://www.encodeproject.org/experiments/ENCSR923VWW" target="_blank">this ENCODE experiment</a>.
                 If you want to use your own data, you can upload your own fastq file using the Galaxy <i>Get Data</i> tool.</p>
 
             <p><b>Tip:</b> When doing this tutorial, you will be navigating around galaxy. If you need to get back to this page, you can simply click the Galaxy logo in the top left corner.</p>
@@ -46,7 +46,7 @@
             <br>
             <h4>Step 2: Map reads using vg</h4>
             <p>By following the instructinos in step 1, you should now see a history on the right side of the screen showing the <b>ENCFF888CHA.fastq</b> dataset as well as a <i>Meme</i>-file (we will use this later).
-            We will now map the reads to the Drosophila Melanogaster graph-based reference genome. Go to the tool called <b>Map reads to graph</b> by expanding the <b>vg tools</b> sub-menu in the left menu and clicking <b>Map reads to graph</b>.</p>
+            We will now map the reads to the D. melanogaster graph-based reference genome. Go to the tool called <b>Map reads to graph</b> by expanding the <b>vg tools</b> sub-menu in the left menu and clicking <b>Map reads to graph</b>.</p>
             <p>Your fastq dataset should be pre-selected as input, so all you need to do is clicking the <b>Execute</b> button. A new history element appearing on the right side of your screen will turn green once mapping is finished. This should take about 10 minutes.</p>
             <br>
             <h4>Step 3: Filtering </h4>
@@ -63,8 +63,8 @@
                 We do not have a separate control track (if you have, you simply select a control track in the input titled <i>Control reads mapped with vg (optional)</i>).
                 Select the meme file <b>DM_SQZ.meme</b> in the <i>Meme motif file</i> selection field.
             </p>
-            <p>Make sure that <i>Genome</i> is set to <b>Drosophila Melanogaster</b>. Set read length to <b>50</b> and fragment length to <b>240</b>.</p>
-            <p>Press <b>Execute</b>. Calling peaks on Drosophila Melanogaster should take about 30-45 minutes. The tool produces several output files (see below).</p>
+            <p>Make sure that <i>Genome</i> is set to <b>D. melanogaster</b>. Set read length to <b>50</b> and fragment length to <b>240</b>.</p>
+            <p>Press <b>Execute</b>. Calling peaks on D. melanogaster should take about 30-45 minutes. The tool produces several output files (see below).</p>
             <br>
             <h4>Output files</h4>
             <p>Graph Peak caller will produce peaks in multiple formats, making it easier for the user to find a format that is suitable for further analysis.</p>
@@ -78,13 +78,17 @@
             <hr>
 
             <h1>Data</h1>
-            <h3>Drosophila Melanogaster</h3>
+            <h3>D. melanogaster</h3>
             <p>This graph-based reference genome is created using the SNPs and indels from <a href="http://www.iipl.fudan.edu.cn/FlyVar/sourcefordownloading.jsp" target="_blank">FlyVar</a> and the <i>dm3</i> reference genome.</p>
             <p>The vg graphs, indices, Offset Based Graphs, linear paths etc can be downloaded by <a href="https://hyperbrowser.uio.no/graph-peak-caller/static/graph_peak_caller_data/drosophila_melanogaster.tar.gz">clicking here.</a></p>
-            <h3>Arabidopsis Thaliana</h3>
+            <h3>A. thaliana</h3>
             <p>This graph-based reference genome is created using the SNP and indels from <a href="http://1001genomes.org" target="_blank">the 1001 Geomes Project</a> and the <i>tair10</i> reference genome.</p>
             <p>The vg graphs, indices, Offset Based Graphs, linear paths etc can be downloaded by <a href="https://hyperbrowser.uio.no/graph-peak-caller/static/graph_peak_caller_data/arabidopsis_thaliana.tar.gz">clicking here.</a></p>
             <hr>
+            <h3>S. cerevisiae </h3>
+            <p>This graph-based reference genome is created using only SNPs from <a href="http://www.moseslab.csb.utoronto.ca/sgrp/download.html" target="_blank">the Saccharomyces Genome Resequencing Project</a> and the <i>S288C</i> reference genome. All chromosome names were converted from roman numbers to numeric.</p>
+            <p>The vg graphs, indices, Offset Based Graphs, linear paths etc can be downloaded by <a href="https://hyperbrowser.uio.no/graph-peak-caller/static/graph_peak_caller_data/yeast.tar.gz">clicking here.</a></p>
+
         </div>
         </p>
     </body>

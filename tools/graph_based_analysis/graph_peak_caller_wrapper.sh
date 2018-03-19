@@ -50,7 +50,7 @@ echo "Splitting reads"
 /usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py split_vg_json_reads_into_chromosomes $chromosomes $sample $graph_dir > split_log.txt 2>& 1
 
 if [ $sample != $control ]; then
-    /usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py split_vg_json_reads_into_chromosomes $chromosomes $control $graph_dir > split_log_control.txt 2>& 1
+    /usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_pfeak_caller/command_line_interface.py split_vg_json_reads_into_chromosomes $chromosomes $control $graph_dir > split_log_control.txt 2>& 1
 fi
 
 
@@ -111,7 +111,7 @@ else
     for chromosome in $(echo $chromosomes | tr "," "\n")
     do
         /usit/abel/u1/ivargry/.conda/envs/py36/bin/python3.6 /usit/abel/u1/ivargry/graph_peak_caller/graph_peak_caller/command_line_interface.py diffexpr \
-            $chromosome $graph_dir/$chromosome.nobg fimo_$chromosome/fimo.txt $graph_dir/$chromosome.json > diffexpr_log.txt 2>&1
+            -g $graph_dir/$chromosome.nobg $chromosome fimo_$chromosome/fimo.txt $graph_dir/$chromosome.json
 
         cat ${chromosome}_diffexpr.fasta >> $out_differentially_expressed
     done
