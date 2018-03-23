@@ -7,6 +7,7 @@
     <param name="genome" type="select" label="Genome" argument="Select genome you want to map these reads to">
         <option value="drosophila_melanogaster">Drosophila Melanogaster SNP and indel graph</option>
         <option value="arabidopsis_thaliana">Arabidopsis Thaliana SNP and indel graph</option>
+        <option value="yeast">Saccharomyces cerevisiae (yeast) SNP graph</option>
     </param>
   </inputs>
   <outputs>
