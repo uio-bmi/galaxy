@@ -11,7 +11,7 @@
 
 
   <help>
-    This tool runs <i>vg view -aj input.gam > output.json</i>, converting GAM to JSON.
+    This tool runs vg view -aj input.gam > output.json, converting GAM to JSON.
   </help>
 
 </tool>
