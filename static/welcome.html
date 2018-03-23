@@ -63,7 +63,10 @@
                 We do not have a separate control track (if you have, you simply select a control track in the input titled <i>Control reads mapped with vg (optional)</i>).
                 Select the meme file <b>DM_SQZ.meme</b> in the <i>Meme motif file</i> selection field.
             </p>
-            <p>Make sure that <i>Genome</i> is set to <b>D. melanogaster</b>. Set read length to <b>50</b> and fragment length to <b>240</b>.</p>
+            <p>Make sure that <i>Genome</i> is set to <b>D. melanogaster</b>. Set read length to <b>50</b> and fragment length to <b>240</b>.
+            Note: When using your own data, you will need to set read length and fragment length to what matches your data. If the fragment length is unknown, you can estimate it
+                by using the <i>graph_peak_caller estimate_shift</i> command on the command line (will be added as a separate Galaxy tool in the future)
+            </p>
             <p>Press <b>Execute</b>. Calling peaks on D. melanogaster should take about 30-45 minutes. The tool produces several output files (see below).</p>
             <br>
             <h4>Output files</h4>
@@ -78,6 +81,7 @@
             <hr>
 
             <h1>Data</h1>
+            <p>All graphs and indices are created using <a href="http://github.com/vgteam/vg">vg</a>.</p>
             <h3>D. melanogaster</h3>
             <p>This graph-based reference genome is created using the SNPs and indels from <a href="http://www.iipl.fudan.edu.cn/FlyVar/sourcefordownloading.jsp" target="_blank">FlyVar</a> and the <i>dm3</i> reference genome.</p>
             <p>The vg graphs, indices, Offset Based Graphs, linear paths etc can be downloaded by <a href="https://hyperbrowser.uio.no/graph-peak-caller/static/graph_peak_caller_data/drosophila_melanogaster.tar.gz">clicking here.</a></p>

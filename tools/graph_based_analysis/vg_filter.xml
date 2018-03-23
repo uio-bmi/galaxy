@@ -15,6 +15,14 @@
 
   <help>
     This tool runs vg filter -q min_mapping_quality -r min_identity -s 2.0 input.gam > output.gam.
+    The PHRED mapping quality score is -log10 of the probability that the alignment is wrong, and should be set to a suitable number depending on your needs.
+    Typically, something between 30 and 60 is used, and the exact threshold used does often not make big difference, since most reads either have
+    a really good alignment or a really bad alignment.
+
+    Minimum identity is the minimum score divided by read length required (0.9 roughly means that90% matched). For an alignment to be kept,
+    it must satisfy both criteria (PRED mapping quality score and identity).
+
+
   </help>
 
 </tool>
